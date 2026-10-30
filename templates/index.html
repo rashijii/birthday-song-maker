@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Song Maker</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3, #ffc3a0);
+        }
+
+        .birthday-box {
+            width: 100%;
+            max-width: 430px;
+            padding: 30px 24px;
+            text-align: center;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+        }
+
+        .cake {
+            font-size: 75px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #e83e70;
+            margin: 8px 0;
+            font-size: 30px;
+        }
+
+        .subtitle {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ffd0df;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+            margin-bottom: 16px;
+        }
+
+        input:focus {
+            border-color: #e83e70;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: #e83e70;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #c92759;
+        }
+
+        .message {
+            margin-top: 22px;
+            padding: 15px;
+            background: #fff0f5;
+            border-radius: 12px;
+            color: #b42358;
+            line-height: 1.6;
+        }
+
+        .music-note {
+            font-size: 28px;
+        }
+
+        .footer {
+            margin-top: 22px;
+            color: #888;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="birthday-box">
+        <div class="cake">🎂</div>
+
+        <h1>Birthday Song Maker</h1>
+
+        <p class="subtitle">
+            Make someone's birthday special!
+            Enter a name and create a birthday greeting.
+        </p>
+
+        
+<form method="POST" action="/">
+    <label for="name">Birthday person's name</label>
+
+    <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Enter a name, e.g. Rashi"
+        maxlength="40"
+        required
+    >
+
+    <label for="gender">Choose the birthday person's gender</label>
+
+    <select id="gender" name="gender" required>
+        <option value="">Select one</option>
+        <option value="girl">Girl</option>
+        <option value="boy">Boy</option>
+    </select>
+
+    <button type="submit">🎉 Create Birthday Greeting</button>
+</form>
+
+         
+
+        {% if name %}
+        <div class="message">
+            <div class="music-note">🎵 🎂 🎵</div>
+
+            <h2>Happy Birthday, {{ name }}!</h2>
+
+            <p>
+                Wishing you lots of happiness,
+                love and success!
+            </p>
+
+            <p>🎈 Have a wonderful birthday! 🎈</p>
+        </div>
+        {% endif %}
+
+        <div class="footer">
+            Made with ❤️ for your special day
+        </div>
+    </div>
+</body>
+</html>

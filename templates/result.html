@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise 💗</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            padding: 25px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #ffd6e7, #fff0f5, #e7d5ff);
+            overflow-x: hidden;
+        }
+
+        .card {
+            position: relative;
+            background: white;
+            width: 100%;
+            max-width: 490px;
+            padding: 28px 20px;
+            border-radius: 28px;
+            box-shadow: 0 10px 35px #d88bab55;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #e75480;
+            font-size: 29px;
+        }
+
+        p {
+            color: #88506b;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        .bear-stage {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 4px;
+            margin: 15px auto 20px;
+        }
+
+        .bear {
+            font-size: clamp(65px, 16vw, 88px);
+            animation: cuddle 2s ease-in-out infinite;
+            line-height: 1.3;
+        }
+
+        .bear:last-child {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes cuddle {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-7px) rotate(3deg); }
+        }
+
+        .gift-button {
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            font-size: 65px;
+            padding: 0;
+            margin: 0 -3px 8px;
+            position: relative;
+            z-index: 2;
+            animation: giftGlow 1.3s ease-in-out infinite;
+        }
+
+        .gift-button:focus-visible {
+            outline: 3px solid #e75480;
+            border-radius: 15px;
+        }
+
+        @keyframes giftGlow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.13); }
+        }
+
+        .tap-hint {
+            color: #df5288;
+            font-weight: bold;
+            margin-top: -12px;
+        }
+
+        .surprise {
+            display: none;
+            padding: 18px 12px;
+            margin: 15px 0;
+            border-radius: 20px;
+            background: #fff0f7;
+            animation: popIn 0.7s ease both;
+        }
+
+        .surprise.show {
+            display: block;
+        }
+
+        .surprise h2 {
+            color: #e75480;
+            font-size: 24px;
+        }
+
+        .flowers {
+            font-size: 30px;
+            letter-spacing: 5px;
+            animation: flowerDance 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes flowerDance {
+            from { transform: rotate(-5deg) scale(0.95); }
+            to { transform: rotate(5deg) scale(1.08); }
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.65); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .flying-flower {
+            position: fixed;
+            z-index: 20;
+            pointer-events: none;
+            bottom: -45px;
+            animation: flyUp 3.5s ease-out forwards;
+        }
+
+        @keyframes flyUp {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.7);
+                opacity: 0;
+            }
+            15% { opacity: 1; }
+            100% {
+                transform: translateY(-110vh) rotate(400deg) scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        button.action {
+            border: none;
+            padding: 13px 20px;
+            margin: 8px 4px;
+            border-radius: 25px;
+            background: #f16b9b;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button.action:hover {
+            background: #d9477c;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        .footer {
+            font-size: 14px;
+            margin-top: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="card">
+        <h1>🎂 Happy Birthday, {{ name }}! 🎂</h1>
+
+        <p>Our little bears have a special surprise for you! 💕</p>
+
+        <div class="bear-stage" aria-label="Cute bear couple holding a present">
+            <span class="bear" role="img" aria-label="White bear">🐻‍❄️</span>
+
+            <button
+                class="gift-button"
+                id="giftButton"
+                type="button"
+                aria-label="Open your birthday present"
+                onclick="openGift()">
+                🎁
+            </button>
+
+            <span class="bear" role="img" aria-label="Brown bear">🐻</span>
+        </div>
+
+        <p class="tap-hint" id="tapHint">👇 Tap the present to open it! 💝</p>
+
+        <section class="surprise" id="surprise">
+            <div class="flowers">🌸 🌷 💐 🌹 🌼</div>
+
+            <h2>Surprise, {{ name }}! 💖</h2>
+
+            <p>
+                Wishing you a day full of love, happiness and beautiful surprises.
+                May all your dreams come true! ✨
+            </p>
+
+            <p>Sending you lots of flowers, hugs and kisses! 💐💋</p>
+
+            <div class="flowers">🌷 💖 🌻 💗 🌸</div>
+        </section>
+
+        <p id="wish">Your special birthday wish is waiting! 💗</p>
+
+        <button class="action" id="playButton" onclick="startBirthday()">
+            💖 Play Birthday Wish
+        </button>
+
+        <audio id="birthdaySong" controls preload="auto">
+            <source
+                src="{{ url_for('static', filename='birthday.mp3') }}"
+                type="audio/mpeg">
+            Your browser does not support audio.
+        </audio>
+
+        <p class="footer">Made with love by two little bears 🐻💕</p>
+
+        <button class="action" onclick="location.href='/'">
+            🎀 Create Another Wish
+        </button>
+
+        <button class="action" onclick="shareOnWhatsApp()">
+         💚 Share on WhatsApp
+        </button>
+    </main>
+
+    <script>
+        const birthdayName = {{ name | tojson }};
+        const birthdayGender = {{ gender | tojson }};
+
+        const song = document.getElementById("birthdaySong");
+        const wish = document.getElementById("wish");
+
+        let wishStarted = false;
+        let giftOpened = false;
+
+        function shareOnWhatsApp() {
+    const message = "🎂 Happy Birthday, {{ name }}! 🎉\n\nOpen this birthday greeting: " + window.location.href;
+
+    const whatsappURL = "https://wa.me/?text=" + encodeURIComponent(message);
+
+    window.open(whatsappURL, "_blank");
+}
+
+        function openGift() {
+            if (giftOpened) {
+                makeFlowers();
+                return;
+            }
+
+            giftOpened = true;
+
+            document.getElementById("surprise").classList.add("show");
+            document.getElementById("tapHint").textContent =
+                "Yay! Your present is open! 💝";
+
+            document.getElementById("giftButton").textContent = "💝";
+
+            makeFlowers();
+        }
+
+        function makeFlowers() {
+            const decorations = ["🌸", "🌷", "🌹", "💐", "🌼", "💖", "💕"];
+
+            for (let i = 0; i < 24; i++) {
+                const flower = document.createElement("span");
+
+                flower.className = "flying-flower";
+                flower.textContent =
+                    decorations[Math.floor(Math.random() * decorations.length)];
+
+                flower.style.left = Math.random() * 100 + "vw";
+                flower.style.fontSize = (22 + Math.random() * 22) + "px";
+                flower.style.animationDelay = (Math.random() * 1.3) + "s";
+
+                document.body.appendChild(flower);
+
+                flower.addEventListener("animationend", function () {
+                    flower.remove();
+                });
+            }
+        }
+
+        function chooseVoice(voices) {
+            const englishVoices = voices.filter(
+                voice => voice.lang.toLowerCase().startsWith("en")
+            );
+
+            const available = englishVoices.length ? englishVoices : voices;
+
+            const wanted = birthdayGender === "girl" ? "male" : "female";
+
+            const pattern = wanted === "male"
+                ? /male|david|mark|daniel|guy|fred|tom/i
+                : /female|zira|samantha|victoria|karen|susan|aria|jenny|sara/i;
+
+            return available.find(voice => pattern.test(voice.name))
+                || available[0]
+                || null;
+        }
+
+        function startBirthday() {
+            if (wishStarted) return;
+
+            if (!("speechSynthesis" in window)) {
+                wish.textContent =
+                    "Happy Birthday, " + birthdayName +
+                    "! Please play the song below. 🎂";
+                return;
+            }
+
+            wishStarted = true;
+            window.speechSynthesis.cancel();
+
+            const message = new SpeechSynthesisUtterance(
+                "Happy Birthday to you, " + birthdayName +
+                "! Wishing you lots of happiness, love and beautiful surprises!"
+            );
+
+            message.rate = 0.9;
+            message.pitch = 1;
+
+            const voices = window.speechSynthesis.getVoices();
+            const selectedVoice = chooseVoice(voices);
+
+            if (selectedVoice) {
+                message.voice = selectedVoice;
+                message.lang = selectedVoice.lang;
+            } else {
+                message.lang = "en-US";
+            }
+
+            message.onstart = function () {
+                wish.textContent =
+                    "💗 A special birthday wish for " + birthdayName + "! 💗";
+            };
+
+            message.onend = function () {
+                wish.textContent = "🎵 Now playing your birthday song! 🎵";
+
+                song.currentTime = 0;
+                song.play().catch(function () {
+                    wish.textContent =
+                        "Your wish is complete! Press Play on the song below. 🎵";
+                });
+            };
+
+            message.onerror = function () {
+                wish.textContent = "Press Play Birthday Wish to try again.";
+                wishStarted = false;
+            };
+
+            window.speechSynthesis.speak(message);
+        }
+
+        window.addEventListener("load", function () {
+            if ("speechSynthesis" in window) {
+                window.speechSynthesis.getVoices();
+            }
+
+            setTimeout(startBirthday, 700);
+        });
+    </script>
+</body>
+</html>
