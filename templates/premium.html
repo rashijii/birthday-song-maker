@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9887718982563862"
+     crossorigin="anonymous"></script>
+     
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Birthday Card</title>
+
+    <style>
+        body {
+            background: #ffe4ec;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        .container {
+            background: white;
+            max-width: 450px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px #d99aaa;
+        }
+
+        h1 {
+            color: #e83e70;
+        }
+
+        input, textarea, select {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #e8a5b8;
+            border-radius: 8px;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #e83e70;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 8px;
+        }
+
+        .birthday-card {
+            max-width: 450px;
+            margin: 30px auto;
+            padding: 35px 20px;
+            border-radius: 22px;
+            border: 5px solid white;
+            box-shadow: 0 5px 20px #d99aaa;
+        }
+
+        .pink {
+            background: linear-gradient(135deg, #ffb6c9, #ffe4ec);
+            color: #9b1748;
+        }
+
+        .gold {
+            background: linear-gradient(135deg, #f5d76e, #fff4c2);
+            color: #755000;
+        }
+
+        .purple {
+            background: linear-gradient(135deg, #d8b4fe, #f3e8ff);
+            color: #542080;
+        }
+
+        .birthday-card h2 {
+            font-size: 30px;
+        }
+
+        .birthday-card p {
+            font-size: 18px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container, .no-print {
+                display: none;
+            }
+
+            .birthday-card {
+                box-shadow: none;
+                margin: 20px auto;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🎁 Premium Birthday Card</h1>
+        <p>Create a beautiful birthday card!</p>
+
+        <form action="/premium" method="POST">
+
+            <input type="text" name="name"
+                   placeholder="Birthday Person Name" required>
+
+            <input type="text" name="sender"
+                   placeholder="Your Name" required>
+
+            <textarea name="message"
+                      placeholder="Write Birthday Message"
+                      required></textarea>
+
+            <select name="theme">
+                <option value="pink">Pink Theme</option>
+                <option value="gold">Golden Theme</option>
+                <option value="purple">Purple Theme</option>
+            </select>
+
+            <button type="submit">Create Birthday Card 🎂</button>
+
+        </form>
+    </div>
+
+    {% if name %}
+    <div class="birthday-card {{ theme }}">
+        <h1>🎉 Happy Birthday 🎉</h1>
+
+        <h2>{{ name }}</h2>
+
+        <p>{{ message }}</p>
+
+        <h3>With Love ❤️</h3>
+        <h3>{{ sender }}</h3>
+
+        <div style="font-size: 35px;">🎂 🎁 🎈</div>
+    </div>
+
+    <div class="no-print">
+        <button onclick="window.print()">Download Birthday Card</button>
+    </div>
+    {% endif %}
+
+</body>
+</html>
