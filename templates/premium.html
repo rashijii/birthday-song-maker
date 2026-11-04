@@ -2,97 +2,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9887718982563862"
-     crossorigin="anonymous"></script>
-     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Birthday Card</title>
+    <title>Premium Birthday Card Studio</title>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9887718982563862"
+     crossorigin="anonymous"></script>
+
+    <!-- Image Download Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
-        body {
-            background: #ffe4ec;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 30px 15px;
-        }
-
-        .container {
-            background: white;
-            max-width: 450px;
-            margin: auto;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px #d99aaa;
-        }
-
-        h1 {
-            color: #e83e70;
-        }
-
-        input, textarea, select {
-            width: 90%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #e8a5b8;
-            border-radius: 8px;
-            font-size: 15px;
+        * {
             box-sizing: border-box;
         }
 
-        button {
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffb6c9, #ffe4ec, #f3d5ff);
+            color: #333;
+        }
+
+        .main {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .heading {
+            text-align: center;
+            color: #d52f68;
+        }
+
+        .heading h1 {
+            font-size: 32px;
+        }
+
+        .panel {
+            background: white;
+            padding: 22px;
+            border-radius: 20px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(150, 50, 90, .15);
+        }
+
+        h2 {
+            color: #df3971;
+            font-size: 21px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-weight: bold;
+            margin: 15px 0 7px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e8a5b8;
+            border-radius: 9px;
+            font-size: 15px;
+            background: white;
+        }
+
+        textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        button, .share-link {
+            border: none;
             background: #e83e70;
             color: white;
-            border: none;
-            padding: 13px 25px;
+            padding: 12px 18px;
             border-radius: 25px;
-            font-size: 16px;
+            font-size: 14px;
+            font-weight: bold;
             cursor: pointer;
-            margin: 8px;
+            margin: 6px 3px;
+            text-decoration: none;
+            display: inline-block;
         }
+
+        button:hover, .share-link:hover {
+            background: #bd2455;
+        }
+
+        .secondary {
+            background: #8253a5;
+        }
+
+        .secondary:hover {
+            background: #633982;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .photo-grid input {
+            font-size: 12px;
+            padding: 8px;
+        }
+
+        .photo-preview {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .photo-preview img {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid white;
+        }
+
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 9px;
+        }
+
+        .theme-option {
+            border: 2px solid #eee;
+            padding: 12px 4px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .theme-option.active {
+            border: 3px solid #e83e70;
+        }
+
+        .pink { background: linear-gradient(135deg,#ffb6c9,#ffe4ec); color:#9b1748; }
+        .gold { background: linear-gradient(135deg,#f5d76e,#fff4c2); color:#755000; }
+        .purple { background: linear-gradient(135deg,#d8b4fe,#f3e8ff); color:#542080; }
+        .blue { background: linear-gradient(135deg,#9ddcff,#e5f6ff); color:#14527b; }
+        .red { background: linear-gradient(135deg,#ff9a9e,#fad0c4); color:#8d1d35; }
+        .black { background: linear-gradient(135deg,#252525,#777); color:white; }
+        .green { background: linear-gradient(135deg,#a8e6cf,#eafff2); color:#176344; }
+        .peach { background: linear-gradient(135deg,#ffcba4,#fff0e4); color:#994c27; }
+        .lavender { background: linear-gradient(135deg,#c3b1e1,#f4eaff); color:#583b82; }
+        .silver { background: linear-gradient(135deg,#cbd5e1,#f8fafc); color:#344054; }
+        .rose { background: linear-gradient(135deg,#f4a7bb,#ffe1e9); color:#8e244c; }
+        .midnight { background: linear-gradient(135deg,#14213d,#455a85); color:white; }
 
         .birthday-card {
-            max-width: 450px;
-            margin: 30px auto;
-            padding: 35px 20px;
+            max-width: 600px;
+            min-height: 350px;
+            margin: 25px auto;
+            padding: 25px;
+            border: 7px solid white;
             border-radius: 22px;
-            border: 5px solid white;
-            box-shadow: 0 5px 20px #d99aaa;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,.2);
+            overflow-wrap: anywhere;
         }
 
-        .pink {
-            background: linear-gradient(135deg, #ffb6c9, #ffe4ec);
-            color: #9b1748;
-        }
-
-        .gold {
-            background: linear-gradient(135deg, #f5d76e, #fff4c2);
-            color: #755000;
-        }
-
-        .purple {
-            background: linear-gradient(135deg, #d8b4fe, #f3e8ff);
-            color: #542080;
+        .birthday-card h1 {
+            font-size: 30px;
         }
 
         .birthday-card h2 {
-            font-size: 30px;
+            font-size: 34px;
+            color: inherit;
         }
 
         .birthday-card p {
             font-size: 18px;
             line-height: 1.6;
             white-space: pre-wrap;
-            overflow-wrap: anywhere;
+        }
+
+        #cardPhotos {
+            max-width: 350px;
+            margin: 15px auto;
+        }
+
+        #cardPhotos img {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid white;
+        }
+
+        .animation {
+            animation: appear 1.2s ease;
+        }
+
+        @keyframes appear {
+            from { opacity: 0; transform: scale(.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .float {
+            animation: float 2s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            50% { transform: translateY(-10px); }
+        }
+
+        .envelope {
+            font-size: 65px;
+            cursor: pointer;
+            padding: 15px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .footer {
+            text-align: center;
+            color: #9b4668;
+            padding: 20px;
+            font-size: 13px;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #777;
+            text-align: left;
+        }
+
+        @media(max-width: 500px) {
+            .theme-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .birthday-card {
+                padding: 15px;
+            }
+
+            .birthday-card h1 {
+                font-size: 24px;
+            }
         }
 
         @media print {
             body {
                 background: white;
+                padding: 0;
             }
 
-            .container, .no-print {
-                display: none;
+            .no-print {
+                display: none !important;
             }
 
             .birthday-card {
@@ -107,51 +274,428 @@
 
 <body>
 
-    <div class="container">
-        <h1>🎁 Premium Birthday Card</h1>
-        <p>Create a beautiful birthday card!</p>
+<div class="main">
 
-        <form action="/premium" method="POST">
-
-            <input type="text" name="name"
-                   placeholder="Birthday Person Name" required>
-
-            <input type="text" name="sender"
-                   placeholder="Your Name" required>
-
-            <textarea name="message"
-                      placeholder="Write Birthday Message"
-                      required></textarea>
-
-            <select name="theme">
-                <option value="pink">Pink Theme</option>
-                <option value="gold">Golden Theme</option>
-                <option value="purple">Purple Theme</option>
-            </select>
-
-            <button type="submit">Create Birthday Card 🎂</button>
-
-        </form>
+    <div class="heading no-print">
+        <h1>👑 Premium Birthday Card Studio</h1>
+        <p>Create a beautiful card full of love and memories! ❤️</p>
+        <a href="/" class="share-link secondary">← Back to Birthday Song Maker</a>
     </div>
 
-    {% if name %}
-    <div class="birthday-card {{ theme }}">
+    <div class="panel no-print">
+
+        <h2>🎂 1. Personal Details</h2>
+
+        <label>Birthday Person Name</label>
+        <input id="personName" type="text" placeholder="Enter birthday name">
+
+        <label>Your Name</label>
+        <input id="senderName" type="text" placeholder="Enter your name">
+
+        <label>Birthday Message</label>
+        <textarea id="message" placeholder="Write a special birthday message..."></textarea>
+
+        <label>🎀 Ready-made Birthday Wishes</label>
+        <select id="wishes">
+            <option value="">Choose a birthday wish</option>
+            <option value="May your day be filled with love, laughter and endless happiness!">Sweet Birthday Wish</option>
+            <option value="May all your dreams come true. Wishing you success and happiness always!">Success Wish</option>
+            <option value="You are a beautiful part of my life. Happy Birthday and lots of love!">Special Love Wish</option>
+            <option value="Stay happy, keep smiling and enjoy every moment of your special day!">Cute Wish</option>
+            <option value="May God bless you with good health, happiness and a wonderful future!">Blessings Wish</option>
+            <option value="A new year of life, new memories and new adventures. Happy Birthday!">Adventure Wish</option>
+        </select>
+
+        <h2>📸 2. Upload Your Photos</h2>
+        <p class="hint">Upload up to 4 photos. JPG, PNG or WebP recommended.</p>
+
+        <div class="photo-grid">
+            <input type="file" class="photoInput" accept="image/*">
+            <input type="file" class="photoInput" accept="image/*">
+            <input type="file" class="photoInput" accept="image/*">
+            <input type="file" class="photoInput" accept="image/*">
+        </div>
+
+        <div class="photo-preview" id="photoPreview"></div>
+
+        <h2>🎨 3. Choose Your Theme</h2>
+
+        <div class="theme-grid" id="themeGrid">
+            <button type="button" class="theme-option pink active" data-theme="pink">🌸 Pink</button>
+            <button type="button" class="theme-option gold" data-theme="gold">👑 Golden</button>
+            <button type="button" class="theme-option purple" data-theme="purple">💜 Purple</button>
+            <button type="button" class="theme-option blue" data-theme="blue">💙 Ocean Blue</button>
+            <button type="button" class="theme-option red" data-theme="red">❤️ Red</button>
+            <button type="button" class="theme-option black" data-theme="black">🖤 Royal Black</button>
+            <button type="button" class="theme-option green" data-theme="green">🌿 Nature</button>
+            <button type="button" class="theme-option peach" data-theme="peach">🍑 Peach</button>
+            <button type="button" class="theme-option lavender" data-theme="lavender">🪻 Lavender</button>
+            <button type="button" class="theme-option silver" data-theme="silver">✨ Silver</button>
+            <button type="button" class="theme-option rose" data-theme="rose">🌹 Rose</button>
+            <button type="button" class="theme-option midnight" data-theme="midnight">🌙 Midnight</button>
+        </div>
+
+        <h2>✍️ 4. Customize Your Card</h2>
+
+        <label>Choose Font</label>
+        <select id="fontChoice">
+            <option value="Arial">Arial</option>
+            <option value="Georgia">Georgia</option>
+            <option value="cursive">Cursive</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Trebuchet MS">Trebuchet MS</option>
+        </select>
+
+        <label>Choose Text Color</label>
+        <input type="color" id="textColor" value="#9b1748">
+
+        <label>🎂 Birthday Date (for countdown)</label>
+        <input type="date" id="birthdayDate">
+
+        <h2>🎵 5. Birthday Music</h2>
+
+        <button type="button" onclick="playMusic()">▶ Play Birthday Music</button>
+        <button type="button" class="secondary" onclick="pauseMusic()">⏸ Pause Music</button>
+        <p class="hint">Uses your existing birthday.mp3 file.</p>
+        <audio id="birthdayMusic" src="{{ url_for('static', filename='birthday.mp3') }}" loop></audio>
+
+        <h2>✨ 6. Animation Effects</h2>
+
+        <label>
+            <input type="checkbox" id="animationToggle" checked style="width:auto;">
+            Enable card animation
+        </label>
+
+        <label>
+            <input type="checkbox" id="confettiToggle" checked style="width:auto;">
+            Show floating birthday decorations
+        </label>
+
+        <h2>💌 7. Surprise Envelope</h2>
+
+        <div class="envelope float" onclick="openEnvelope()">💌</div>
+        <p id="envelopeMessage">Tap the envelope for a surprise!</p>
+
+        <button type="button" onclick="createCard()">🎉 Create My Birthday Card</button>
+
+    </div>
+
+    <div class="birthday-card pink animation" id="birthdayCard">
+
+        <div id="decorations" style="font-size:30px;">🎈 ✨ 🎂 ✨ 🎈</div>
+
         <h1>🎉 Happy Birthday 🎉</h1>
 
-        <h2>{{ name }}</h2>
+        <h2 id="cardName">Your Special Name</h2>
 
-        <p>{{ message }}</p>
+        <div id="cardPhotos"></div>
+
+        <p id="cardMessage">Your beautiful birthday message will appear here.</p>
 
         <h3>With Love ❤️</h3>
-        <h3>{{ sender }}</h3>
+        <h3 id="cardSender">Your Name</h3>
 
-        <div style="font-size: 35px;">🎂 🎁 🎈</div>
+        <div style="font-size:35px;">🎂 🎁 🎈</div>
+
+        <p id="countdownText" style="font-size:14px;"></p>
+
     </div>
 
-    <div class="no-print">
-        <button onclick="window.print()">Download Birthday Card</button>
+    <div class="panel no-print" style="text-align:center;">
+
+        <h2>🎁 Your Birthday Card Is Ready!</h2>
+
+        <button onclick="downloadCard()">📥 Download as Image</button>
+
+        <button class="secondary" onclick="window.print()">📄 Download / Save as PDF</button>
+
+        <button onclick="shareWhatsApp()">💚 Share on WhatsApp</button>
+
+        <p class="hint">For PDF, choose "Save as PDF" in the print window.</p>
+
     </div>
-    {% endif %}
+
+    <div class="footer">
+        Made with ❤️ for your special memories
+    </div>
+
+</div>
+
+<script>
+
+    let selectedTheme = "pink";
+    let uploadedPhotos = [];
+
+    const photoInputs = document.querySelectorAll(".photoInput");
+
+    photoInputs.forEach((input) => {
+        input.addEventListener("change", function () {
+
+            const file = this.files[0];
+
+            if (!file) return;
+
+            if (!file.type.startsWith("image/")) {
+                alert("Please choose an image file.");
+                this.value = "";
+                return;
+            }
+
+            if (file.size > 5 * 1024 * 1024) {
+                alert("Please choose a photo smaller than 5 MB.");
+                this.value = "";
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                uploadedPhotos[Array.from(photoInputs).indexOf(input)] = event.target.result;
+                showPhotoPreview();
+                updateCardPhotos();
+            };
+
+            reader.readAsDataURL(file);
+
+        });
+    });
+
+    function showPhotoPreview() {
+
+        const preview = document.getElementById("photoPreview");
+        preview.innerHTML = "";
+
+        uploadedPhotos.forEach((photo) => {
+            if (!photo) return;
+
+            const img = document.createElement("img");
+            img.src = photo;
+            preview.appendChild(img);
+        });
+
+    }
+
+    function updateCardPhotos() {
+
+        const area = document.getElementById("cardPhotos");
+        area.innerHTML = "";
+
+        const photos = uploadedPhotos.filter(Boolean);
+
+        if (photos.length === 1) {
+            area.style.display = "block";
+        } else {
+            area.style.display = "grid";
+            area.style.gridTemplateColumns = "repeat(2, 1fr)";
+            area.style.gap = "8px";
+        }
+
+        photos.forEach((photo) => {
+            const img = document.createElement("img");
+            img.src = photo;
+            area.appendChild(img);
+        });
+
+    }
+
+    document.querySelectorAll(".theme-option").forEach((button) => {
+
+        button.addEventListener("click", function () {
+
+            selectedTheme = this.dataset.theme;
+
+            document.querySelectorAll(".theme-option").forEach((item) => {
+                item.classList.remove("active");
+            });
+
+            this.classList.add("active");
+
+            document.getElementById("birthdayCard").className =
+                "birthday-card " + selectedTheme;
+
+            updateCard();
+
+        });
+
+    });
+
+    document.getElementById("wishes").addEventListener("change", function () {
+        if (this.value) {
+            document.getElementById("message").value = this.value;
+            updateCard();
+        }
+    });
+
+    document.getElementById("fontChoice").addEventListener("change", updateCard);
+    document.getElementById("textColor").addEventListener("input", updateCard);
+
+    function updateCard() {
+
+        const name = document.getElementById("personName").value.trim();
+        const sender = document.getElementById("senderName").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        document.getElementById("cardName").textContent = name || "Your Special Name";
+        document.getElementById("cardSender").textContent = sender || "Your Name";
+        document.getElementById("cardMessage").textContent =
+            message || "Your beautiful birthday message will appear here.";
+
+        const card = document.getElementById("birthdayCard");
+
+        card.style.fontFamily = document.getElementById("fontChoice").value;
+        card.style.color = document.getElementById("textColor").value;
+
+        updateCardPhotos();
+
+        if (document.getElementById("animationToggle").checked) {
+            card.classList.add("animation");
+        } else {
+            card.classList.remove("animation");
+        }
+
+        updateCountdown();
+
+    }
+
+    function createCard() {
+
+        const name = document.getElementById("personName").value.trim();
+
+        if (!name) {
+            alert("Please enter the birthday person's name.");
+            return;
+        }
+
+        updateCard();
+
+        document.getElementById("birthdayCard").scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        if (document.getElementById("confettiToggle").checked) {
+            showConfetti();
+        }
+
+    }
+
+    function updateCountdown() {
+
+        const value = document.getElementById("birthdayDate").value;
+        const output = document.getElementById("countdownText");
+
+        if (!value) {
+            output.textContent = "";
+            return;
+        }
+
+        const now = new Date();
+        const birthday = new Date(value + "T00:00:00");
+
+        if (birthday < new Date(now.getFullYear(), now.getMonth(), now.getDate())) {
+            birthday.setFullYear(now.getFullYear() + 1);
+        }
+
+        const days = Math.ceil((birthday - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 86400000);
+
+        output.textContent = days === 0
+            ? "🎉 Today is the Birthday! 🎉"
+            : "🎂 " + days + " days until the Birthday!";
+    }
+
+    document.getElementById("birthdayDate").addEventListener("change", updateCountdown);
+
+    function showConfetti() {
+
+        const decorations = document.getElementById("decorations");
+        decorations.textContent = "🎈 🎊 ✨ 🎉 🎂 🎉 ✨ 🎊 🎈";
+
+        setTimeout(() => {
+            decorations.textContent = "🎈 ✨ 🎂 ✨ 🎈";
+        }, 5000);
+
+    }
+
+    function openEnvelope() {
+
+        const message = document.getElementById("envelopeMessage");
+
+        message.textContent =
+            "💖 You are special! May your life always be filled with happiness, love and beautiful memories! 💖";
+
+        message.style.fontWeight = "bold";
+        message.style.color = "#d52f68";
+
+    }
+
+    function playMusic() {
+
+        const music = document.getElementById("birthdayMusic");
+
+        music.play().catch(() => {
+            alert("Music could not be played. Please check birthday.mp3.");
+        });
+
+    }
+
+    function pauseMusic() {
+        document.getElementById("birthdayMusic").pause();
+    }
+
+    async function downloadCard() {
+
+        const card = document.getElementById("birthdayCard");
+
+        if (typeof html2canvas === "undefined") {
+            alert("Image download library could not load. Please check your internet connection.");
+            return;
+        }
+
+        try {
+
+            const canvas = await html2canvas(card, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: null
+            });
+
+            const link = document.createElement("a");
+
+            link.download = "My-Premium-Birthday-Card.png";
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+
+        } catch (error) {
+            alert("Sorry, image download failed. Please try again.");
+        }
+
+    }
+
+    function shareWhatsApp() {
+
+        const name = document.getElementById("personName").value.trim();
+
+        if (!name) {
+            alert("Please create your card first.");
+            return;
+        }
+
+        const message =
+            "🎂 Happy Birthday " + name + "! 🎉\n\n" +
+            document.getElementById("message").value + "\n\n" +
+            "I created a birthday card for you! ❤️\n" +
+            window.location.href;
+
+        window.open(
+            "https://wa.me/?text=" + encodeURIComponent(message),
+            "_blank"
+        );
+
+    }
+
+    updateCard();
+
+</script>
 
 </body>
 </html>
